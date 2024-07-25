@@ -6,8 +6,8 @@ const Home = () => {
     <Box>
       <Box
         sx={{
-          height: '100vh',
-          backgroundImage: `url('https://hub.wtm.com/wp-content/uploads/2021/04/shutterstock_371697133-1200x480.png')`,
+          height: '40vh',
+          backgroundImage: `url('https://emudhra.com/hubfs/Imported_Blog_Media/kBxROhHT4yVGkvq4MjZa.webp')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           color: 'white',
@@ -17,12 +17,19 @@ const Home = () => {
           justifyContent: 'center',
         }}
       >
+        <Box
+        >
+        <Paper elevation={3}   style={{textAlign:'center',padding:'2rem'}}>
         <Typography variant="h2">Smart City</Typography>
         <Typography variant="h6" sx={{ mt: 2, mb: 2 }}>
           Lorem ipsum dolor sit amet consectetur. Sem eros egestas tempus
           vestibulum nec adio nec. Risus tristique ut condimentum posuere id.
         </Typography>
+       
+        
         <Button variant="contained" color="primary">About Us</Button>
+        </Paper>
+        </Box>
       </Box>
 
       <Box sx={{ p: 4, backgroundColor: '#f5f5f5' }}>
