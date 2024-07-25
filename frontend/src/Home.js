@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function Home() {
   return (
-    <div>Home</div>
+    <div style={{float:"left",marginTop:"60px",color:"black"}}>Home</div>
   )
 }

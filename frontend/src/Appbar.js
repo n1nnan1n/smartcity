@@ -14,6 +14,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact'];
@@ -29,13 +30,13 @@ function DrawerAppBar(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        Smart City
       </Typography>
       <Divider />
       <List>
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
+            <ListItemButton component={Link} to={`/${item.toLowerCase()}`} sx={{ textAlign: 'center' }}>
               <ListItemText primary={item} />
             </ListItemButton>
           </ListItem>
@@ -65,18 +66,18 @@ function DrawerAppBar(props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            Smart City
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' }, flexGrow: 1 }}>
-            {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
+          {navItems.map((item) => (
+              <Button key={item} component={Link} to={`/${item.toLowerCase()}`} sx={{ color: '#fff' }}>
                 {item}
               </Button>
             ))}
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Button color="inherit">Login</Button>
-            <Button color="inherit">Register</Button>
+            <Button component={Link} to="/login" color="inherit">Login</Button>
+            <Button component={Link} to="/register" color="inherit">Register</Button>
           </Box>
         </Toolbar>
       </AppBar>
