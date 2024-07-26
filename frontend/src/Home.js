@@ -1,19 +1,22 @@
-import React from 'react';
+import React , { useState }from 'react';
 import { Box, Typography, Container, Button, Grid, Paper,Card,CardMedia,CardContent } from '@mui/material';
-import Footer from './Footer';
+ import pic1 from './pic1.jpg'
 
 const services = [
-  { title: 'สิ่งแวดล้อมอัจฉริยะ', subtitle: 'Smart Environment', img: 'image-url-1.jpg' },
-  { title: 'การเดินทางและขนส่งอัจฉริยะ', subtitle: 'Smart Mobility', img: 'image-url-2.jpg' },
-  { title: 'การดำรงชีวิตอัจฉริยะ', subtitle: 'Smart Living', img: 'image-url-3.jpg' },
-  { title: 'พลเมืองอัจฉริยะ', subtitle: 'Smart People', img: 'image-url-4.jpg' },
-  { title: 'พลังงานอัจฉริยะ', subtitle: 'Smart Energy', img: 'image-url-5.jpg' },
-  { title: 'เศรษฐกิจอัจฉริยะ', subtitle: 'Smart Economy', img: 'image-url-6.jpg' },
-  { title: 'การบริหารภาครัฐอัจฉริยะ', subtitle: 'Smart Government', img: 'image-url-7.jpg' }
+  { title: 'สิ่งแวดล้อมอัจฉริยะ', subtitle: 'Smart Environment', img:  pic1 },
+  { title: 'การเดินทางและขนส่งอัจฉริยะ', subtitle: 'Smart Mobility', img: pic1 },
+  { title: 'การดำรงชีวิตอัจฉริยะ', subtitle: 'Smart Living', img: pic1 },
+  { title: 'พลเมืองอัจฉริยะ', subtitle: 'Smart People', img: pic1 },
+  { title: 'พลังงานอัจฉริยะ', subtitle: 'Smart Energy', img: pic1},
+  { title: 'เศรษฐกิจอัจฉริยะ', subtitle: 'Smart Economy', img: pic1},
+  { title: 'การบริหารภาครัฐอัจฉริยะ', subtitle: 'Smart Government', img: pic1 }
 ];
+ 
+ 
 
 
 const Home = () => {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
   return (
      
     <Box pt={7}>
@@ -108,32 +111,59 @@ const Home = () => {
         </Container>
       </Box> */}
        <Box sx={{ p: 4 }}>
-       <Container>
-      <Typography variant="h4" sx={{ mb: 4 }}>มีความอัจฉริยะครบ 7 ด้าน</Typography>
-      <Grid container spacing={4}  >
-        {services.map(service => (
-          <Grid item xs={12} sm={6} md={4} key={service.title}>
-            <Card  className='folder-1'>
-              <CardMedia
-                component="img"
-                height="140"
-                image={service.img}
-                alt={service.title}
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h6" component="div">
-                  {service.title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {service.subtitle}
-                </Typography>
-              </CardContent>
-              <Button size="small" sx={{ m: 2 }}>View Details</Button>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-     </Container>
+      <Container>
+        <Typography variant="h4" sx={{ mb: 4 }}>มีความอัจฉริยะครบ 7 ด้าน</Typography>
+        <Grid container spacing={4}>
+          {services.map((service, index) => (
+            <Grid item xs={12} sm={6} md={3} key={service.title}>
+              <Card
+                className='folder-1'
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                sx={{
+                  position: 'relative',
+                  overflow: 'hidden',
+                  '&:hover .card-content': {
+                    opacity: 1,
+                    transform: 'translateY(0)',
+                    transition: 'opacity 0.3s, transform 0.3s',
+                  }
+                }}
+              >
+                <CardMedia
+                  component="img"
+                  height="400"
+                  image={service.img}
+                  alt={service.title}
+                />
+                {hoveredIndex === index && (
+                  <CardContent
+                    className="card-content"
+                    sx={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      backgroundColor: 'rgba(221, 221, 221, 0.5)',
+                      backdropFilter: 'blur(5px)',
+                      opacity: 0,
+                      transform: 'translateY(100%)',
+                      transition: 'opacity 0.3s, transform 0.5s',
+                    }}
+                  >
+                    <Typography gutterBottom variant="h6" component="div">
+                      {service.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {service.subtitle}
+                    </Typography>
+                  </CardContent>
+                )}
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
     </Box>
       
      
