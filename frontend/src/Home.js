@@ -68,9 +68,9 @@ const Home = () => {
  
  <div style={{ marginTop: '-3rem' }}>
       <Container>
-        <Grid container spacing={1.75}>
+        <Grid container spacing={1.75} >
           {['CCTV', 'COVID-19', 'น้ำท่วม', 'PM2.5', 'โดรน'].map(service => (
-            <Grid item xs={2.5} sm={4} md={2.4} key={service}>
+            <Grid item xs={2.5} sm={4} md={2.4} className='menu' key={service}>
               <Paper sx={{ p: 2, textAlign: 'center' }}>
                 <Typography
                   style={{ fontWeight: 'bold', textAlign: 'center' }}
@@ -110,10 +110,10 @@ const Home = () => {
        <Box sx={{ p: 4 }}>
        <Container>
       <Typography variant="h4" sx={{ mb: 4 }}>มีความอัจฉริยะครบ 7 ด้าน</Typography>
-      <Grid container spacing={4}>
+      <Grid container spacing={4}  >
         {services.map(service => (
           <Grid item xs={12} sm={6} md={4} key={service.title}>
-            <Card>
+            <Card  className='folder-1'>
               <CardMedia
                 component="img"
                 height="140"

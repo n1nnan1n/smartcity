@@ -7,7 +7,7 @@ import Service from './Service';
 import News from './News';
 import SignIn from './Signin';
 import Register from './Register';
-
+import './App.css';
 function App() {
   return (
     <Routes>
