@@ -15,9 +15,22 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import { styled } from '@mui/system';
 
+const StyledButton = styled(Button)({
+  margin: '0 8px',
+  padding: '8px 16px',
+  fontSize: '16px',
+  borderRadius: '8px',
+  textTransform: 'none',
+  color:'black',
+  transition: 'background-color 0.3s ease',
+  '&:hover': {
+    backgroundColor: 'white',
+  },
+});
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
+const navItems = ['Home', 'About', 'Contact','News','Service'];
 
 function DrawerAppBar(props) {
   const { window } = props;
@@ -36,7 +49,7 @@ function DrawerAppBar(props) {
       <List>
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
-            <ListItemButton component={Link} to={`/${item.toLowerCase()}`} sx={{ textAlign: 'center' }}>
+            <ListItemButton component={Link} to={item === 'Home' ? '/' : `/${item.toLowerCase()}`} sx={{ textAlign: 'center' }}>
               <ListItemText primary={item} />
             </ListItemButton>
           </ListItem>
@@ -49,7 +62,6 @@ function DrawerAppBar(props) {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
       <AppBar component="nav">
         <Toolbar>
           <IconButton
@@ -68,17 +80,21 @@ function DrawerAppBar(props) {
           >
             Smart City
           </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' }, flexGrow: 1 }}>
-          {navItems.map((item) => (
-              <Button key={item} component={Link} to={`/${item.toLowerCase()}`} sx={{ color: '#fff' }}>
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+            {navItems.map((item) => (
+              <Button key={item} component={Link} to={item === 'Home' ? '/' : `/${item.toLowerCase()}`} sx={{ color: '#fff' }}>
                 {item}
               </Button>
             ))}
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Button component={Link} to="/login" color="inherit">Login</Button>
-            <Button component={Link} to="/register" color="inherit">Register</Button>
-          </Box>
+      <StyledButton component={Link} to="/signin" variant="contained" style={{backgroundColor:"lightgreen"}}>
+        Sign in
+      </StyledButton>
+      <StyledButton component={Link} to="/register" variant="contained" style={{backgroundColor:"lightgray"}}>
+        Register
+      </StyledButton>
+    </Box>
         </Toolbar>
       </AppBar>
       <nav>

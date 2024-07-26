@@ -1,8 +1,9 @@
 import React from 'react';
-import { Box, Typography, Button, Grid, Paper } from '@mui/material';
-
+import { Box, Typography, Container, Button, Grid, Paper } from '@mui/material';
+import Footer from './Footer';
 const Home = () => {
   return (
+    <Container maxWidth="xl">
     <Box>
       <Box
         sx={{
@@ -84,11 +85,9 @@ const Home = () => {
         </Typography>
         <Button variant="contained" color="primary">Read More</Button>
       </Box>
-
-      <Box sx={{ p: 4, backgroundColor: '#3a3a3a', color: 'white', textAlign: 'center' }}>
-        <Typography variant="h6">Copyright © 2024 Smart City</Typography>
-      </Box>
     </Box>
+    <Footer />
+    </Container>
   );
 }
 
