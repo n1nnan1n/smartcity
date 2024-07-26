@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Appbar from './Appbar';
 import { BrowserRouter as Router } from 'react-router-dom';
+import Footer from './Footer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -12,6 +13,7 @@ root.render(
     <Router>
       <Appbar />
       <App />
+      <Footer/>
     </Router>
   </React.StrictMode>
 );

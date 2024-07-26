@@ -23,14 +23,15 @@ const StyledButton = styled(Button)({
   fontSize: '16px',
   borderRadius: '8px',
   textTransform: 'none',
-  color:'black',
+  color: 'black',
   transition: 'background-color 0.3s ease',
   '&:hover': {
     backgroundColor: 'white',
   },
 });
+
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact','News','Service'];
+const navItems = ['Home', 'About', 'Contact', 'News', 'Service'];
 
 function DrawerAppBar(props) {
   const { window } = props;
@@ -54,6 +55,20 @@ function DrawerAppBar(props) {
             </ListItemButton>
           </ListItem>
         ))}
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/signin" sx={{ textAlign: 'center' }}>
+            <Button variant="contained" style={{ backgroundColor: "lightgreen", color: 'black' }}>
+              Sign in
+            </Button>
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/register" sx={{ textAlign: 'center' }}>
+            <Button variant="contained" style={{ backgroundColor: "lightgray", color: 'black' }}>
+              Register
+            </Button>
+          </ListItemButton>
+        </ListItem>
       </List>
     </Box>
   );
@@ -62,6 +77,7 @@ function DrawerAppBar(props) {
 
   return (
     <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
       <AppBar component="nav">
         <Toolbar>
           <IconButton
@@ -86,18 +102,20 @@ function DrawerAppBar(props) {
                 {item}
               </Button>
             ))}
+            <StyledButton component={Link} to="/signin" variant="contained" style={{ backgroundColor: "lightgreen" }}>
+              Sign in
+            </StyledButton>
+            <StyledButton component={Link} to="/register" variant="contained" style={{ backgroundColor: "lightgray" }}>
+              Register
+            </StyledButton>
           </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      <StyledButton component={Link} to="/signin" variant="contained" style={{backgroundColor:"lightgreen"}}>
-        Sign in
-      </StyledButton>
-      <StyledButton component={Link} to="/register" variant="contained" style={{backgroundColor:"lightgray"}}>
-        Register
-      </StyledButton>
-    </Box>
         </Toolbar>
       </AppBar>
-      <nav>
+      <Box
+        component="nav"
+        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        aria-label="mailbox folders"
+      >
         <Drawer
           container={container}
           variant="temporary"
@@ -113,7 +131,7 @@ function DrawerAppBar(props) {
         >
           {drawer}
         </Drawer>
-      </nav>
+      </Box>
     </Box>
   );
 }
