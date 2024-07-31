@@ -55,7 +55,7 @@ const News = () => {
         </Grid>
       </Box>
     </Box>
-    <Footer />
+ 
     </Container>
   );
 }

@@ -1,6 +1,10 @@
 import React from 'react';
 import { Box, Typography, Grid, Paper, Container } from '@mui/material';
 import Footer from './Footer';
+import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
+import CoronavirusIcon from '@mui/icons-material/Coronavirus';
+import FloodIcon from '@mui/icons-material/Flood';
+import MasksIcon from '@mui/icons-material/Masks';
 
 const services = [
   { name: 'CCTV', icon: '/path-to-your-icons/cctv-icon.png' },
@@ -29,7 +33,7 @@ const Services = () => {
         </Grid>
       </Box>
     </Box>
-    <Footer />
+ 
     </Container>
   );
 }
