@@ -2,32 +2,93 @@ import React from 'react';
 import { Box, Typography, Grid, Paper, Container, IconButton } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import Footer from './Footer';
-
+import pic1 from './pic1.jpg';
+import pic2 from './pic2.jpg';
+import './App.css'
 const About = () => {
+  const imageItems = [1, 2, 3, 4];
+
   return (
-    <Container maxWidth="xl">
+    <Container>
       {/* About Us Section */}
-      <Box sx={{ my: 6 }}>
-        <Typography variant="h4" sx={{ mb: 2 }}>About us</Typography>
-        <Typography variant="body1" sx={{ mb: 4 }}>
-          Lorem ipsum dolor sit amet consectetur. Et aliquam diam velit tellus condimentum sodales.
-          Sed imperdiet ultricies nec lorem ac ut. Etiam fermentum in venenatis scelerisque ac in pharetra malesuada.
-          Arcu massa id interdum et semper gravida.
-        </Typography>
+      <Box sx={{ my: 6, pt: { xs: 3, sm: 3, md: 4, lg: 7 } ,borderBottom: '3px solid #000',}} >
         <Grid container spacing={2}>
-          {[1, 2, 3, 4].map((img, index) => (
-            <Grid item xs={6} md={3} key={index}>
-              <img src={`/path-to-your-image/img${img}.jpg`} alt={`img${img}`} style={{ width: '100%', borderRadius: '8px' }} />
+          {/* ฝั่งข้อความ */}
+          <Grid item xs={12} md={6}>
+            <Typography
+              variant="h4"
+              sx={{
+                mb: 2,
+                mt: { xs: 0, sm: 10 ,mb:25 },  // ปรับ margin-top ตามขนาดหน้าจอ
+                fontWeight: 'bold',
+                textAlign: 'center',
+                fontSize: {
+                  xs: '1.5rem',  // ขนาดตัวอักษรสำหรับหน้าจอเล็ก
+                  sm: '2rem',    // ขนาดตัวอักษรสำหรับหน้าจอเล็กกลาง
+                  md: '2.5rem',  // ขนาดตัวอักษรสำหรับหน้าจอกลาง
+                  lg: '3rem'     // ขนาดตัวอักษรสำหรับหน้าจอใหญ่
+                }
+              }}
+            >
+              About Us
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                mb: 4,
+                fontSize: {
+                  xs: '0.875rem',  // ขนาดตัวอักษรสำหรับหน้าจอเล็ก
+                  sm: '1rem',      // ขนาดตัวอักษรสำหรับหน้าจอเล็กกลาง
+                  md: '1.125rem',  // ขนาดตัวอักษรสำหรับหน้าจอกลาง
+                  lg: '1.25rem'    // ขนาดตัวอักษรสำหรับหน้าจอใหญ่
+                }
+              }}style={{textAlign:'justify'}}
+              
+            >
+              Lorem ipsum dolor sit amet consectetur. Et aliquam diam velit tellus condimentum sodales.
+              Sed imperdiet ultricies nec lorem ac ut. Etiam fermentum in venenatis scelerisque ac in pharetra malesuada.
+              Arcu massa id interdum et semper gravida.
+            </Typography>
+          </Grid>
+          
+          {/* ฝั่งภาพ */}
+          <Grid item xs={12} md={6}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <Grid container spacing={2}>
+                  {imageItems.slice(0, 2).map((_, index) => (
+                    <Grid item xs={6} key={index}>
+                      <img
+                        src={pic1}
+                        alt={`Image ${index + 1}`} // เพิ่ม alt attribute เพื่อความเข้ากันได้กับ SEO
+                        style={{ width: '100%', borderRadius: '8px', objectFit: 'cover' }} // เพิ่ม objectFit เพื่อให้ภาพไม่บิดเบี้ยว
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
+              </Grid>
+              <Grid item xs={12}>
+                <Grid container spacing={2}>
+                  {imageItems.slice(2).map((_, index) => (
+                    <Grid item xs={6} key={index}>
+                      <img
+                        src={pic1}
+                        alt={`Image ${index + 3}`} // เพิ่ม alt attribute เพื่อความเข้ากันได้กับ SEO
+                        style={{ width: '100%', borderRadius: '8px', objectFit: 'cover' }} // เพิ่ม objectFit เพื่อให้ภาพไม่บิดเบี้ยว
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
+              </Grid>
             </Grid>
-          ))}
+          </Grid>
         </Grid>
       </Box>
 
       {/* เราทำอะไรบ้าง Section */}
-      <Box sx={{ textAlign: 'center', my: 6 }}>
+      <Box sx={{ textAlign: 'center', my: 6 ,borderBottom: '3px solid #000',pb: { xs: 3, sm: 3, md: 4, lg: 7 } }}>
         <Typography variant="h4" sx={{ mb: 2 }}>เราทำอะไรบ้าง</Typography>
-        <Typography variant="body1" sx={{ mb: 4 }}>
+        <Typography className='detail-text' sx={{ mb: 4 }}  variant="body1" style={{textAlign:'justify',textAlign:'center'}}>
           Lorem ipsum dolor sit amet consectetur. Gravida suspendisse vel sit purus euismod odio purus turpis purus.
         </Typography>
         <Box sx={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
@@ -38,7 +99,7 @@ const About = () => {
             {[1, 2, 3, 4].map((img, index) => (
               <Grid item xs={12} md={3} key={index}>
                 <Paper sx={{ p: 2 }}>
-                  <img src={`/path-to-your-image/img${img}.jpg`} alt={`img${img}`} style={{ width: '100%', borderRadius: '8px' }} />
+                  <img src={pic2} style={{ width: '100%', borderRadius: '8px' }} />
                   <Typography variant="body1" sx={{ mt: 2 }}>
                     Lorem Ipsum Dolor Sit Amet Consectetur.
                   </Typography>
@@ -54,18 +115,26 @@ const About = () => {
 
       {/* Map Section */}
       <Box sx={{ display: 'flex', justifyContent: 'space-between', my: 6 }}>
-        <img src="/path-to-your-image/map.png" alt="map" style={{ width: '50%', borderRadius: '8px' }} />
+        <Box sx={{ width: '50%' }}>
+          {/* ใส่ลิงก์ของ Google Maps */}
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.610571155288!2d-122.4194189846818!3d37.77492927975852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808f8e0c7cf3%3A0x85a6fcf2e2c0d91b!2sSan%20Francisco%2C%20CA%2094110!5e0!3m2!1sen!2sus!4v1616563501037!5m2!1sen!2sus"
+            width="100%"
+            height="300"
+            style={{ border: 0, borderRadius: '8px' }}
+            allowFullScreen=""
+            loading="lazy"
+            title="Google Maps"
+          ></iframe>
+        </Box>
         <Box sx={{ width: '45%' }}>
-          <Typography variant="h4" sx={{ mb: 2 }}>แผนที่</Typography>
-          <Typography variant="body1">
+          <Typography variant="h4" sx={{ mb: 2 }} style={{textAlign:'center'}}>แผนที่</Typography>
+          <Typography variant="body1" className='detail-text' style={{textAlign:'justify'}} >
             Lorem Ipsum Dolor Sit Amet Consectetur. Sit Imperdiet Mauris Lacus Ipsum Enim Placerat.
             Massa Volutpat Neque Elit Enim. Nulla Luctus Egestas Enimnulla Risus. Diam Et Parturient Enim Neque Eget Varius.
           </Typography>
         </Box>
       </Box>
-
-      {/* Footer */}
-      <Footer />
     </Container>
   );
 }

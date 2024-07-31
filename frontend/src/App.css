@@ -1,4 +1,46 @@
- 
+.heading {
+  font-size: 1.5rem;  /* ขนาดตัวอักษรสำหรับหน้าจอเล็ก (มือถือ) */
+}
+
+@media (min-width: 600px) {
+  .heading {
+    font-size: 2rem;  /* ขนาดตัวอักษรสำหรับหน้าจอเล็กกลาง (แท็บเล็ต) */
+  }
+}
+
+@media (min-width: 900px) {
+  .heading {
+    font-size: 2.5rem;  /* ขนาดตัวอักษรสำหรับหน้าจอกลาง (คอมพิวเตอร์โน้ตบุ๊ก) */
+  }
+}
+
+@media (min-width: 1200px) {
+  .heading {
+    font-size: 3rem;  /* ขนาดตัวอักษรสำหรับหน้าจอใหญ่ (เดสก์ท็อป) */
+  }
+}
+.detail-text {
+  font-size: 0.875rem;  /* ขนาดตัวอักษรสำหรับหน้าจอเล็ก (มือถือ) */
+}
+
+@media (min-width: 600px) {
+  .detail-text {
+    font-size: 1rem;  /* ขนาดตัวอักษรสำหรับหน้าจอเล็กกลาง (แท็บเล็ต) */
+  }
+}
+
+@media (min-width: 900px) {
+  .detail-text {
+    font-size: 1.125rem;  /* ขนาดตัวอักษรสำหรับหน้าจอกลาง (คอมพิวเตอร์โน้ตบุ๊ก) */
+  }
+}
+
+@media (min-width: 1200px) {
+  .detail-text {
+    font-size: 1.25rem;  /* ขนาดตัวอักษรสำหรับหน้าจอใหญ่ (เดสก์ท็อป) */
+  }
+}
+
 .App {
   text-align: center;
 }

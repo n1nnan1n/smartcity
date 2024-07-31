@@ -1,7 +1,10 @@
 import React , { useState }from 'react';
 import { Box, Typography, Container, Button, Grid, Paper,Card,CardMedia,CardContent } from '@mui/material';
  import pic1 from './pic1.jpg'
-
+ import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
+ import CoronavirusIcon from '@mui/icons-material/Coronavirus';
+ import FloodIcon from '@mui/icons-material/Flood';
+ import MasksIcon from '@mui/icons-material/Masks';
 const services = [
   { title: 'สิ่งแวดล้อมอัจฉริยะ', subtitle: 'Smart Environment', img:  pic1 },
   { title: 'การเดินทางและขนส่งอัจฉริยะ', subtitle: 'Smart Mobility', img: pic1 },
@@ -17,6 +20,8 @@ const services = [
 
 const Home = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const services = ['CCTV', 'COVID-19', 'น้ำท่วม', 'PM2.5', 'โดรน'];
+
   return (
      
     <Box pt={7}>
@@ -34,21 +39,25 @@ const Home = () => {
         }}
       >
     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', padding: '2rem' }}>
-      <Paper elevation={3} sx={{ textAlign: 'center', padding: '2rem', maxWidth: '600px', width: '100%' }}>
+      <Paper elevation={3} sx={{ textAlign: 'center', padding: '2rem', maxWidth: '800px', width: '100%' ,backgroundColor: 'rgba(192, 189, 189, 0.5)',
+      backdropFilter: 'blur(5px)',
+      padding: '1rem',
+      borderRadius: '8px', }}>
         <Typography 
-        style={{fontWeight:'bold'}}
+        style={{fontWeight:'bold',color:'white'}}
           variant="h2"
           sx={{
             fontSize: {
-              xs: '1rem',
-              sm: '1.5rem',
-              md: '1.75rem',
+              xs: '2rem',
+              sm: '2.25rem',
+              md: '2.5rem',
             }
           }}
         >
           Smart City
         </Typography>
         <Typography
+        style={{color:'white'}}
           variant="h6"
           sx={{
             mt: 2,
@@ -63,36 +72,54 @@ const Home = () => {
         >
           Lorem ipsum dolor sit amet consectetur. Sem eros egestas tempus vestibulum nec adio nec. Risus tristique ut condimentum posuere id.
         </Typography>
-        <Button variant="contained" color="primary">About Us</Button>
+        <Button variant="contained" style={{fontWeight:'bold',color:'black',backgroundColor:"whitesmoke"}}   >About Us</Button>
       </Paper>
     </Box>
    
       </Box>
  
  <div style={{ marginTop: '-3rem' }}>
-      <Container>
-        <Grid container spacing={1.75} >
-          {['CCTV', 'COVID-19', 'น้ำท่วม', 'PM2.5', 'โดรน'].map(service => (
-            <Grid item xs={2.5} sm={4} md={2.4} className='menu' key={service}>
-              <Paper sx={{ p: 2, textAlign: 'center' }}>
+ <Container>
+      <Grid container spacing={1.75}>
+        {services.map(service => (
+          <Grid item xs={12} sm={4} md={2.4} key={service}>
+            <Paper sx={{ p: 2, textAlign: 'center' }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                {/* Display icons based on the service */}
+                {service === 'CCTV' && (
+                  <VideoCameraFrontIcon sx={{ fontSize: '2.5rem', mb: 1 }} />
+                )}
+                {service === 'COVID-19' && (
+                  <CoronavirusIcon sx={{ fontSize: '2.5rem', mb: 1 }} />
+                )}
+                 {service === 'น้ำท่วม' && (
+                  <FloodIcon sx={{ fontSize: '2.5rem', mb: 1 }} />
+                )}
+                 {service === 'PM2.5' && (
+                  <MasksIcon sx={{ fontSize: '2.5rem', mb: 1 }} />
+                )}
+                 {/* {service === 'โดรน' && (
+                  <FloodIcon sx={{ fontSize: '2.5rem', mb: 1 }} />
+                )} */}
                 <Typography
-                  style={{ fontWeight: 'bold', textAlign: 'center' }}
-                  variant="h2"
                   sx={{
+                    fontWeight: 'bold',
                     fontSize: {
                       xs: '.75rem',
                       sm: '1.25rem',
                       md: '1.5rem',
-                    }
+                    },
+                    textAlign: 'center'
                   }}
                 >
                   {service}
                 </Typography>
-              </Paper>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
+              </Box>
+            </Paper>
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
     </div>
       
 
@@ -144,6 +171,7 @@ const Home = () => {
                       bottom: 0,
                       left: 0,
                       right: 0,
+                
                       backgroundColor: 'rgba(221, 221, 221, 0.5)',
                       backdropFilter: 'blur(5px)',
                       opacity: 0,
