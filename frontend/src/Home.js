@@ -451,9 +451,9 @@ const shouldUseSlider =  isLargeScreen && newsItems.length > 3;
             <Box key={index} sx={{ px: 1, height: '400px' }}>
               <Paper sx={{ height: '100%', display: 'flex', flexDirection: 'column', p: 2 }}>
                 <CardMedia component="img" height="200" image={news.image} alt={news.title} />
-                <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                  <Typography variant="h6">{news.title}</Typography>
-                  <Typography variant="body2" sx={{ mt: 2 }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }} mt={2}>
+                  <Typography   variant="h6" style={{ fontFamily: 'Noto Sans Thai' }}>{news.title}</Typography>
+                  <Typography variant="body2" sx={{ mt: 2 }} style={{ fontFamily: 'Noto Sans Thai' }}>
                     {news.description}
                   </Typography>
                   <Box sx={{ flexGrow: 1 }} />
