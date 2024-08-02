@@ -443,9 +443,11 @@ const shouldUseSlider =  isLargeScreen && newsItems.length > 3;
     </Box>
     <Box sx={{ pb: 4,pt:4, backgroundColor: '#f5f5f5', mt: 4 }}>
       <Container>
+
         <Typography variant="h4" sx={{ mb: 4 }} style={{ fontFamily: 'Noto Sans Thai' }}>
           ข่าวสาร
         </Typography>
+        
         <Slider {...settings}>
           {newsItems.map((news, index) => (
             <Box key={index} sx={{ px: 1, height: '400px' }}>

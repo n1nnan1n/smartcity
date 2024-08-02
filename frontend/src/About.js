@@ -28,7 +28,7 @@ const About = () => {
                   md: '2.5rem',  // ขนาดตัวอักษรสำหรับหน้าจอกลาง
                   lg: '3rem'     // ขนาดตัวอักษรสำหรับหน้าจอใหญ่
                 }
-              }}
+              }}style={{ fontFamily: 'Noto Sans Thai' }}
             >
               About Us
             </Typography>
@@ -42,7 +42,7 @@ const About = () => {
                   md: '1.125rem',  // ขนาดตัวอักษรสำหรับหน้าจอกลาง
                   lg: '1.25rem'    // ขนาดตัวอักษรสำหรับหน้าจอใหญ่
                 }
-              }}style={{textAlign:'justify'}}
+              }}style={{textAlign:'justify',fontFamily: 'Noto Sans Thai' }}
               
             >
               Lorem ipsum dolor sit amet consectetur. Et aliquam diam velit tellus condimentum sodales.
@@ -87,8 +87,8 @@ const About = () => {
 
       {/* เราทำอะไรบ้าง Section */}
       <Box sx={{ textAlign: 'center', my: 6 ,borderBottom: '3px solid #000',pb: { xs: 3, sm: 3, md: 4, lg: 7 } }}>
-        <Typography variant="h4" sx={{ mb: 2 }}>เราทำอะไรบ้าง</Typography>
-        <Typography className='detail-text' sx={{ mb: 4 }}  variant="body1" style={{textAlign:'justify',textAlign:'center'}}>
+        <Typography variant="h4" sx={{ mb: 2 }} style={{ fontFamily: 'Noto Sans Thai' }}>เราทำอะไรบ้าง</Typography>
+        <Typography className='detail-text' sx={{ mb: 4 }}  variant="body1" style={{textAlign:'justify',textAlign:'center', fontFamily: 'Noto Sans Thai' }}>
           Lorem ipsum dolor sit amet consectetur. Gravida suspendisse vel sit purus euismod odio purus turpis purus.
         </Typography>
         <Box sx={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
@@ -100,7 +100,7 @@ const About = () => {
               <Grid item xs={12} md={3} key={index}>
                 <Paper sx={{ p: 2 }}>
                   <img src={pic2} style={{ width: '100%', borderRadius: '8px' }} />
-                  <Typography variant="body1" sx={{ mt: 2 }}>
+                  <Typography variant="body1" sx={{ mt: 2 }} style={{ fontFamily: 'Noto Sans Thai' }}>
                     Lorem Ipsum Dolor Sit Amet Consectetur.
                   </Typography>
                 </Paper>
@@ -114,9 +114,31 @@ const About = () => {
       </Box>
 
       {/* Map Section */}
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', my: 6 }}>
-        <Box sx={{ width: '50%' }}>
-          {/* ใส่ลิงก์ของ Google Maps */}
+      <Box sx={{ my: 6 }}>
+      <Grid container spacing={4} justifyContent="center" alignItems="center">
+        {/* Text Section */}
+        <Grid item xs={12} md={6} order={{ xs: 1, md: 2 }}>
+          <Typography
+            variant="h4"
+            sx={{ mb: 2, textAlign: 'center', fontFamily: 'Noto Sans Thai' }}
+          >
+            แผนที่
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              mb: 2,
+              textAlignLast: 'center',
+              fontFamily: 'Noto Sans Thai',
+              textAlign: 'justify',
+            }}
+          >
+            Lorem Ipsum Dolor Sit Amet Consectetur. Sit Imperdiet Mauris Lacus Ipsum Enim Placerat.
+            Massa Volutpat Neque Elit Enim. Nulla Luctus Egestas Enimnulla Risus. Diam Et Parturient Enim Neque Eget Varius.
+          </Typography>
+        </Grid>
+        {/* Map Section */}
+        <Grid item xs={12} md={6} order={{ xs: 2, md: 1 }}>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.610571155288!2d-122.4194189846818!3d37.77492927975852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808f8e0c7cf3%3A0x85a6fcf2e2c0d91b!2sSan%20Francisco%2C%20CA%2094110!5e0!3m2!1sen!2sus!4v1616563501037!5m2!1sen!2sus"
             width="100%"
@@ -126,15 +148,9 @@ const About = () => {
             loading="lazy"
             title="Google Maps"
           ></iframe>
-        </Box>
-        <Box sx={{ width: '45%' }}>
-          <Typography variant="h4" sx={{ mb: 2 }} style={{textAlign:'center'}}>แผนที่</Typography>
-          <Typography variant="body1" className='detail-text' style={{textAlign:'justify'}} >
-            Lorem Ipsum Dolor Sit Amet Consectetur. Sit Imperdiet Mauris Lacus Ipsum Enim Placerat.
-            Massa Volutpat Neque Elit Enim. Nulla Luctus Egestas Enimnulla Risus. Diam Et Parturient Enim Neque Eget Varius.
-          </Typography>
-        </Box>
-      </Box>
+        </Grid>
+      </Grid>
+    </Box>
     </Container>
   );
 }
