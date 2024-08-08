@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
   googleId: { type: String, unique: true, sparse: true },
   facebookId: { type: String, unique: true, sparse: true },
   email: { type: String, unique: true, required: true },
-  password: { type: String },
+  password: { type: String , required: true},
   fname: { type: String, required: true },
-  nname: { type: String, required: true },
+  lname: { type: String, required: true },
+  phone: { type: String, required: true },
   emailVerified: { type: Boolean, default: false },
   emailVerificationToken: { type: String },
   emailVerificationExpires: { type: Date },

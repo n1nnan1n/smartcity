@@ -13,10 +13,7 @@ const SignIn = () => {
   const handleLoginFailure = (response) => {
     console.log('Login Failed:', response);
   };
-  const handleFacebookLoginSuccess = (response) => {
-    console.log('Facebook Login Success:', response);
-    // คุณสามารถเก็บ token และเรียกใช้ API ตามที่ต้องการ
-  };
+
   return (
     <Container maxWidth="xl">
       <Box sx={{ p: 4, mt: { xs: 0, sm: 10, mb: 25 } }}>
@@ -52,43 +49,15 @@ const SignIn = () => {
             </Typography>
             <Typography variant="body2" sx={{ textAlign: 'center', mb: 2 }}>-or-</Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              {/* <Button
-                variant="outlined"
-                startIcon={<GoogleIcon />}
-                sx={{ width: '100%' }}
-                onClick={() => {
-                  // Add your Google Sign-In logic here
-                }}
-              >
-                Sign in with Google
-              </Button> */}
               <GoogleLogin
-                clientId="YOUR_GOOGLE_CLIENT_ID"
+                clientId="176530666181-n4k3q23104370qt4epd16eag0h036u58.apps.googleusercontent.com"
                 buttonText="Sign in with Google"
                 onSuccess={handleLoginSuccess}
                 onFailure={handleLoginFailure}
+                redirectUri="http://localhost:3000/auth/callback"
                 cookiePolicy={'single_host_origin'}
                 style={{ width: '100%' }}
               />
-              {/* <Button variant="outlined" startIcon={<FacebookIcon />} sx={{ width: '100%' }}>
-                Sign in with Facebook
-              </Button> */}
-                 {/* <FacebookLogin
-                appId="1529772517972523"
-                autoLoad={false}
-                fields="name,email,picture"
-                callback={handleFacebookLoginSuccess}
-                render={renderProps => (
-                  <Button
-                    variant="outlined"
-                    startIcon={<FacebookIcon />}
-                    onClick={renderProps.onClick}
-                    sx={{ width: '100%' }}
-                  >
-                    Sign in with Facebook
-                  </Button>
-                )}
-              /> */}
             </Box>
           </Paper>
         </Box>

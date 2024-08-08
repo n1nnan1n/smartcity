@@ -7,6 +7,7 @@ import Service from './Service';
 import News from './News';
 import SignIn from './Signin';
 import Register from './Register';
+import Fileupload from './Fileupload';
 import './Home.css'
 import './App.css';
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <Route path="/news" element={<News />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/fileupload" element={<Fileupload />} />
     </Routes>
   );
 }
