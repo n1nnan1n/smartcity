@@ -17,7 +17,7 @@ const services = [
 const Services = () => {
   return (
     <Container maxWidth="xl">
-    <Box sx={{ p: 4 }}>
+    <Box sx={{ p: 9 }}>
       {/* Services Section */}
       <Box sx={{ textAlign: 'center', mb: 6 }}>
         <Typography variant="h4" sx={{ mb: 4 }}>Services</Typography>
