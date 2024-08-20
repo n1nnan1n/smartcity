@@ -1,195 +1,105 @@
 import React from 'react';
-
+import { Container, Grid, Typography, Box } from '@mui/material';
+import pic1 from './pic1.jpg';
 const Smart = () => {
   return (
-    <div style={styles.smartEnvironment}>
+    <Container    sx={{ fontFamily: 'Arial, sans-serif', paddingTop:'5rem'}}>
       {/* Hero Section */}
-      <div style={styles.hero}>
+      <Box sx={{ position: 'relative', textAlign: 'center', color: 'white', mb: 4 }}>
         <img
-          src="path/to/your/image.png"
+          src={pic1 }
           alt="Wind Turbine"
-          style={styles.heroImage}
+          style={{ width: '100%', height: '30rem' }}
         />
-        <div style={styles.heroText}>
-          <h1 style={styles.heroTitle}>Smart Environment</h1>
-          <p style={styles.heroDescription}>
-            Lorem Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit, Nunc
-            Vulputate Libero Et Velit Interdum, Ac Aliquet Odio Mattis.
-          </p>
-          <p style={styles.heroDescription}>
-            Class Aptent Taciti Sociosqu Ad Litora Torquent Per Conubia Nostra,
-            Per Inceptos Himen. Curabitur Tempus Una At Turpis Condimentum
-            Lobortis.
-          </p>
-        </div>
-      </div>
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            textAlign: 'center',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            padding: '20px',
+            borderRadius: '10px',
+          }}
+        >
+          <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '3rem' }, mb: 2 }}>
+            Smart Environment
+          </Typography>
+          <Typography variant="body1" sx={{ fontSize: { xs: '1rem', md: '1.2rem' } }}>
+            Lorem Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit, Nunc Vulputate Libero Et Velit Interdum, Ac Aliquet Odio Mattis.
+          </Typography>
+          <Typography variant="body1" sx={{ fontSize: { xs: '1rem', md: '1.2rem' }, mt: 2 }}>
+            Class Aptent Taciti Sociosqu Ad Litora Torquent Per Conubia Nostra, Per Inceptos Himen. Curabitur Tempus Una At Turpis Condimentum Lobortis.
+          </Typography>
+        </Box>
+      </Box>
 
       {/* Services Section */}
-      <div style={styles.services}>
-        <div style={styles.service}>
-          <img src="path/to/icon1.png" alt="Service 1" style={styles.serviceIcon} />
-          <p style={styles.serviceText}>Services 01</p>
-        </div>
-        <div style={styles.service}>
-          <img src="path/to/icon2.png" alt="Service 2" style={styles.serviceIcon} />
-          <p style={styles.serviceText}>Services 02</p>
-        </div>
-        <div style={styles.service}>
-          <img src="path/to/icon3.png" alt="Service 3" style={styles.serviceIcon} />
-          <p style={styles.serviceText}>Services 03</p>
-        </div>
-        <div style={styles.service}>
-          <img src="path/to/icon4.png" alt="Service 4" style={styles.serviceIcon} />
-          <p style={styles.serviceText}>Services 04</p>
-        </div>
-        <div style={styles.service}>
-          <img src="path/to/icon5.png" alt="Service 5" style={styles.serviceIcon} />
-          <p style={styles.serviceText}>Services 05</p>
-        </div>
-      </div>
+      <Grid container justifyContent="center" spacing={2} sx={{ py: 4, backgroundColor: '#f3f3f3' }}>
+        {[1, 2, 3, 4, 5].map((service, index) => (
+          <Grid item key={index}>
+            <Box
+              sx={{
+                width: '100px',
+                height: '100px',
+                borderRadius: '50%',
+                backgroundColor: '#ffffff',
+                boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: 'auto',
+              }}
+            >
+              <img
+                src={`path/to/icon${service}.png`}
+                alt={`Service ${service}`}
+                style={{ width: '50px', height: '50px' }}
+              />
+            </Box>
+            <Typography variant="h6" sx={{ mt: 2, fontWeight: 'bold', textAlign: 'center' }}>
+              Services 0{service}
+            </Typography>
+          </Grid>
+        ))}
+      </Grid>
 
       {/* About Section */}
-      <div style={styles.about}>
-        <div style={styles.aboutImageWrapper}>
+      <Grid container spacing={4} sx={{ py: 4 }}>
+        <Grid item xs={12} md={6} sx={{ position: 'relative', textAlign: 'center' }}>
           <img
             src="path/to/your/image.png"
             alt="Wind Turbine and Solar Panels"
-            style={styles.aboutImage}
+            style={{ width: '100%', borderRadius: '10px', maxWidth: '400px' }}
           />
-          <div style={styles.playButton}>
-            <i className="fa fa-play"></i>
-          </div>
-        </div>
-        <div style={styles.aboutText}>
-          <h2 style={styles.aboutTitle}>About Our Smart Environment services</h2>
-          <p style={styles.aboutDescription}>
-            Lorem Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit, Nunc
-            Vulputate Libero Et Velit Interdum, Ac Aliquet Odio Mattis. Class
-            Aptent Taciti Sociosqu Ad Litora Torquent Per Conubia Nostra, Per
-            Inceptos Himen. Curabitur Tempus Una At Turpis Condimentum Lobortis.
-          </p>
-        </div>
-      </div>
-    </div>
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              borderRadius: '50%',
+              padding: '1rem',
+              width: 'fit-content',
+              height: 'fit-content',
+            }}
+          >
+            <i className="fa fa-play" style={{ color: 'white', fontSize: '2rem' }} />
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Typography variant="h2" sx={{ fontSize: { xs: '1.5rem', md: '2rem' }, mb: 2 }}>
+            About Our Smart Environment services
+          </Typography>
+          <Typography variant="body1" sx={{ fontSize: '1.2rem', lineHeight: '1.6' }}>
+            Lorem Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit, Nunc Vulputate Libero Et Velit Interdum, Ac Aliquet Odio Mattis. Class Aptent Taciti Sociosqu Ad Litora Torquent Per Conubia Nostra, Per Inceptos Himen. Curabitur Tempus Una At Turpis Condimentum Lobortis.
+          </Typography>
+        </Grid>
+      </Grid>
+    </Container>
   );
-};
-
-const styles = {
-  smartEnvironment: {
-    fontFamily: 'Arial, sans-serif',
-  },
-  /* Hero Section */
-  hero: {
-    position: 'relative',
-    textAlign: 'center',
-    color: 'white',
-  },
-  heroImage: {
-    width: '100%',
-    height: 'auto',
-  },
-  heroText: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    textAlign: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    padding: '20px',
-    borderRadius: '10px',
-  },
-  heroTitle: {
-    fontSize: '3rem',
-    marginBottom: '1rem',
-  },
-  heroDescription: {
-    fontSize: '1.2rem',
-  },
-
-  /* Services Section */
-  services: {
-    display: 'flex',
-    justifyContent: 'space-around',
-    padding: '2rem 0',
-    backgroundColor: '#f3f3f3',
-    flexWrap: 'wrap',
-  },
-  service: {
-    textAlign: 'center',
-    flex: '1 1 150px',
-    margin: '10px',
-  },
-  serviceIcon: {
-    width: '80px',
-    height: '80px',
-  },
-  serviceText: {
-    marginTop: '1rem',
-    fontWeight: 'bold',
-  },
-
-  /* About Section */
-  about: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    padding: '2rem',
-    flexWrap: 'wrap',
-  },
-  aboutImageWrapper: {
-    position: 'relative',
-    flex: '1 1 400px',
-    marginBottom: '20px',
-  },
-  aboutImage: {
-    width: '100%',
-    maxWidth: '400px',
-    height: 'auto',
-    borderRadius: '10px',
-  },
-  playButton: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    borderRadius: '50%',
-    padding: '1rem',
-  },
-  aboutText: {
-    flex: '2 1 400px',
-    marginLeft: '2rem',
-  },
-  aboutTitle: {
-    fontSize: '2rem',
-    marginBottom: '1rem',
-  },
-  aboutDescription: {
-    fontSize: '1.2rem',
-    lineHeight: '1.6',
-  },
-
-  /* Responsive Styles */
-  '@media (max-width: 768px)': {
-    heroTitle: {
-      fontSize: '2rem',
-    },
-    heroDescription: {
-      fontSize: '1rem',
-    },
-    about: {
-      flexDirection: 'column',
-    },
-    aboutText: {
-      marginLeft: '0',
-      marginTop: '20px',
-    },
-    heroText: {
-      padding: '10px',
-    },
-    playButton: {
-      padding: '0.5rem',
-    },
-  },
 };
 
 export default Smart;
