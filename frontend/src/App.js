@@ -8,6 +8,7 @@ import News from './News';
 import SignIn from './Signin';
 import Register from './Register';
 import Fileupload from './Fileupload';
+import Showimg from './Showimg';
 import './Home.css'
 import './App.css';
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <Route path="/signin" element={<SignIn />} />
       <Route path="/register" element={<Register />} />
       <Route path="/fileupload" element={<Fileupload />} />
+      <Route path="/showimg" element={<Showimg />} />
     </Routes>
   );
 }

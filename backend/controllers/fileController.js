@@ -1,51 +1,59 @@
-const { gfs, gridfsBucket } = require('../config/database');
-const File = require('../models/File');
+// controllers/fileController.js
+const { gfs, conn } = require('../config/database');
+const multer = require('multer');
+const { GridFsStorage } = require('multer-gridfs-storage');
+const path = require('path');
+const crypto = require('crypto');
 
-const uploadFile = async (req, res) => {
-  console.log(req.file); // Log to see all properties
-
-  try {
-    const { file } = req;
-
-    if (!file) {
-      throw new Error('No file uploaded');
-    }
-
-    // Create a new file metadata document
-    const newFile = new File({
-      filename: file.filename,
-      contentType: file.contentType,
-      size: file.size,
-      gridfsId: file._id, // Make sure 'id' exists in the logged file object
-    });
-
-    await newFile.save();
-
-    res.status(201).json({ message: "File uploaded successfully", fileId: newFile._id });
-  } catch (error) {
-    console.error('Error uploading file:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
-
-
-const retrieveFile = (req, res) => {
-  gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
-    if (!file || file.length === 0) {
-        return res.status(404).send('No file exists');
-    }
-
-    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
-        // Streaming file back to the client
-        const readstream = gridfsBucket.openDownloadStream(file._id);
-        readstream.pipe(res);
-    } else {
-        res.status(404).send('Not an image');
+// Create storage engine
+const storage = new GridFsStorage({
+    url: 'mongodb+srv://thanincwtnk:thaninboy4@smartcity.5sxkzfv.mongodb.net/smartcity?retryWrites=true&w=majority&appName=smartcity',
+    file: (req, file) => {
+        return new Promise((resolve, reject) => {
+            crypto.randomBytes(16, (err, buf) => {
+                if (err) {
+                    console.error('Error generating random bytes:', err);
+                    return reject(err);
+                }
+                const filename = buf.toString('hex') + path.extname(file.originalname);
+                const fileInfo = {
+                    filename: filename,
+                    bucketName: 'uploads'
+                };
+                console.log('File Info:', fileInfo);
+                resolve(fileInfo);
+            });
+        });
     }
 });
+
+const upload = multer({ storage }).single('file');
+
+// Controller function to handle file upload
+exports.uploadFile = (req, res) => {
+    upload(req, res, (err) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.status(200).json({ file: req.file });
+    });
 };
 
-module.exports = {
-  uploadFile,
-  retrieveFile
+exports.getFile = (req, res) => {
+    const filename = req.params.filename;
+
+    gfs.files.findOne({ filename: filename }, (err, file) => {
+        if (err || !file) {
+            return res.status(404).json({ err: 'File not found' });
+        }
+
+        // Check if the file is an image
+        if (file.contentType.startsWith('image/')) {
+            // Read output to browser
+            const readstream = gfs.createReadStream(file.filename);
+            readstream.pipe(res);
+        } else {
+            res.status(404).json({ err: 'Not an image' });
+        }
+    });
 };
