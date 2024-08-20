@@ -29,8 +29,7 @@ const imgController = {
       if (!img) {
         return res.status(404).send('img not found');
       }
-      res.set('Content-Type', img.image.contentType);
-      res.send(img.image.data.buffer);
+      res.json(img);
     } catch (error) {
       res.status(500).send('Server error');
     }

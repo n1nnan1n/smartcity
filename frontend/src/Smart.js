@@ -3,7 +3,7 @@ import { Container, Grid, Typography, Box } from '@mui/material';
 import pic1 from './pic1.jpg';
 const Smart = () => {
   return (
-    <Container    sx={{ fontFamily: 'Arial, sans-serif', paddingTop:'5rem'}}>
+    <Container sx={{ fontFamily: 'Arial, sans-serif', paddingTop:'5rem'}}>
       {/* Hero Section */}
       <Box sx={{ position: 'relative', textAlign: 'center', color: 'white', mb: 4 }}>
         <img

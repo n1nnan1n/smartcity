@@ -1,11 +1,11 @@
 import React from 'react';
 import DisplayImage from './Showimg.js';
 import { Box, Typography, Grid } from '@mui/material';
-const imageId = "66c45a748f24f9d2603ffe2e";
+// const imageId = "66c45a748f24f9d2603ffe2e";
 const Footer = () => {
   return (
     <Box sx={{ backgroundColor: '#000', color: 'white', textAlign: 'center', p: 4 }}>
-      <DisplayImage imageId={imageId} />
+      {/* <DisplayImage imageId={imageId} /> */}
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12} sm={0}>
           <Typography variant="h6" sx={{ mb: 2 }}>LOGO</Typography>
