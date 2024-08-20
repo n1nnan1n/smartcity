@@ -12,7 +12,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import { useTheme } from '@mui/material/styles';
 import { useMediaQuery } from '@mui/material'; // นำเข้าจาก @mui/material โดยตรง
- 
+import { useNavigate } from 'react-router-dom';
 
 const Home = ({ smartItems  }) => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -21,7 +21,13 @@ const Home = ({ smartItems  }) => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
   const imageId = "66c45a748f24f9d2603ffe2e";
-  
+
+  const navigate = useNavigate();
+
+  const handleCardClick = (index) => {
+    // navigate(`/Smart/${index}`);
+    navigate(`/Smart/`);
+  };
 const smart = [
   { title: 'สิ่งแวดล้อมอัจฉริยะ', subtitle: 'Smart Environment', img:  pic1 },
   { title: 'การเดินทางและขนส่งอัจฉริยะ', subtitle: 'Smart Mobility', img: pic1 },
@@ -276,7 +282,185 @@ const shouldUseSlider =  isLargeScreen && newsItems.length > 3;
 
      
       {/* Smart Areas Section */}
+      <Box sx={{ pb: 4, pt: 4, backgroundColor: '#f5f5f5', mt: 4 }}>
       <Container>
+        {isLargeScreen ? (
+          <Grid container spacing={4}>
+            <Grid item xs={12} md={9}>
+              <Grid container spacing={4}>
+                {smart.slice(0, 3).map((item, index) => (
+                  <Grid item xs={12} sm={4} key={item.title}>
+                    <Card
+                      className="folder-1"
+                      onMouseEnter={() => setHoveredIndex(index)}
+                      onMouseLeave={() => setHoveredIndex(null)}
+                      onClick={() => handleCardClick(index)}
+                      sx={{
+                        position: 'relative',
+                        overflow: 'hidden',
+                        cursor: 'pointer',
+                        '&:hover .card-content': {
+                          opacity: 1,
+                          transform: 'translateY(0)',
+                          transition: 'opacity 0.3s, transform 0.3s',
+                        },
+                      }}
+                    >
+                      <CardMedia
+                        component="img"
+                        height="400"
+                        image={item.img}
+                        alt={item.title}
+                      />
+                      {hoveredIndex === index && (
+                        <CardContent
+                          className="card-content"
+                          sx={{
+                            position: 'absolute',
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            backgroundColor: 'rgba(221, 221, 221, 0.5)',
+                            backdropFilter: 'blur(5px)',
+                            opacity: 0,
+                            transform: 'translateY(100%)',
+                            transition: 'opacity 0.3s, transform 0.5s',
+                          }}
+                        >
+                          <Typography gutterBottom variant="h6" component="div">
+                            {item.title}
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            {item.subtitle}
+                          </Typography>
+                        </CardContent>
+                      )}
+                    </Card>
+                  </Grid>
+                ))}
+              </Grid>
+            </Grid>
+            <Grid item xs={12} md={3}>
+              <Typography
+                variant="h4"
+                sx={{ mb: 5, pt: 22 }}
+                style={{ fontFamily: 'Noto Sans Thai', fontWeight: 'bold', textAlign: 'center' }}
+              >
+                มีความอัจฉริยะครบ 7 ด้าน
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Grid container spacing={4}>
+                {smart.slice(3).map((item, index) => (
+                  <Grid item xs={12} sm={6} md={3} key={item.title}>
+                    <Card
+                      className="folder-1"
+                      onMouseEnter={() => setHoveredIndex(index + 3)}
+                      onMouseLeave={() => setHoveredIndex(null)}
+                      onClick={() => handleCardClick(index + 3)}
+                      sx={{
+                        position: 'relative',
+                        overflow: 'hidden',
+                        cursor: 'pointer',
+                        '&:hover .card-content': {
+                          opacity: 1,
+                          transform: 'translateY(0)',
+                          transition: 'opacity 0.3s, transform 0.3s',
+                        },
+                      }}
+                    >
+                      <CardMedia
+                        component="img"
+                        height="400"
+                        image={item.img}
+                        alt={item.title}
+                      />
+                      {hoveredIndex === index + 3 && (
+                        <CardContent
+                          className="card-content"
+                          sx={{
+                            position: 'absolute',
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            backgroundColor: 'rgba(221, 221, 221, 0.5)',
+                            backdropFilter: 'blur(5px)',
+                            opacity: 0,
+                            transform: 'translateY(100%)',
+                            transition: 'opacity 0.3s, transform 0.5s',
+                          }}
+                        >
+                          <Typography gutterBottom variant="h6" component="div">
+                            {item.title}
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            {item.subtitle}
+                          </Typography>
+                        </CardContent>
+                      )}
+                    </Card>
+                  </Grid>
+                ))}
+              </Grid>
+            </Grid>
+          </Grid>
+        ) : (
+          <Slider {...settings}>
+            {smart.map((item, index) => (
+              <Card
+                key={item.title}
+                className="folder-1"
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                onClick={() => handleCardClick(index)}
+                sx={{
+                  position: 'relative',
+                  overflow: 'hidden',
+                  cursor: 'pointer',
+                  '&:hover .card-content': {
+                    opacity: 1,
+                    transform: 'translateY(0)',
+                    transition: 'opacity 0.3s, transform 0.3s',
+                  },
+                }}
+              >
+                <CardMedia
+                  component="img"
+                  height="400"
+                  image={item.img}
+                  alt={item.title}
+                />
+                {hoveredIndex === index && (
+                  <CardContent
+                    className="card-content"
+                    sx={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      backgroundColor: 'rgba(221, 221, 221, 0.5)',
+                      backdropFilter: 'blur(5px)',
+                      opacity: 0,
+                      transform: 'translateY(100%)',
+                      transition: 'opacity 0.3s, transform 0.5s',
+                    }}
+                  >
+                    <Typography gutterBottom variant="h6" component="div">
+                      {item.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {item.subtitle}
+                    </Typography>
+                  </CardContent>
+                )}
+              </Card>
+            ))}
+          </Slider>
+        )}
+      </Container>
+    </Box>
+      {/* <Container>
+
         {isLargeScreen ? (
           <Grid container spacing={4}>
             <Grid item xs={12} md={9}>
@@ -440,7 +624,7 @@ const shouldUseSlider =  isLargeScreen && newsItems.length > 3;
             ))}
           </Slider>
         )}
-      </Container>
+      </Container>*/}
     </Box>
     <Box sx={{ pb: 4,pt:4, backgroundColor: '#f5f5f5', mt: 4 }}>
       <Container>
