@@ -1,6 +1,7 @@
 import React , { useState }from 'react';
 import { Box, Typography, Container, Button, Grid, Paper,Card,CardMedia,CardContent } from '@mui/material';
- import pic1 from './pic1.jpg'
+ import pic1 from './pic1.jpg';
+ import DisplayImage from './Showimg.js';
  import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
  import CoronavirusIcon from '@mui/icons-material/Coronavirus';
  import FloodIcon from '@mui/icons-material/Flood';
@@ -19,7 +20,7 @@ const Home = ({ smartItems  }) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
- 
+  const imageId = "66c45a748f24f9d2603ffe2e";
   
 const smart = [
   { title: 'สิ่งแวดล้อมอัจฉริยะ', subtitle: 'Smart Environment', img:  pic1 },

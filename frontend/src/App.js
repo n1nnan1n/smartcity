@@ -9,6 +9,7 @@ import SignIn from './Signin';
 import Register from './Register';
 import Fileupload from './Fileupload';
 import Showimg from './Showimg';
+import Smart from './Smart';
 import './Home.css'
 import './App.css';
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/fileupload" element={<Fileupload />} />
       <Route path="/showimg" element={<Showimg />} />
+      <Route path="/smart" element={<Smart />} />
     </Routes>
   );
 }

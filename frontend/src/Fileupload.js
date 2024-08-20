@@ -81,10 +81,10 @@ const ImageUpload = () => {
 
   const uploadFiles = async () => {
     const formData = new FormData();
-    files.forEach(file => formData.append('files', file));
+    files.forEach(file => formData.append('image', file));  // Changed 'files' to 'image'
 
     try {
-      const response = await axios.post('/upload', formData, {
+      const response = await axios.post('http://localhost:5000/img/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -97,29 +97,29 @@ const ImageUpload = () => {
 
   return (
     <Container >
-    <Box sx={{ padding: 10 }}>
-      <Box {...getRootProps()} sx={{
-        border: '2px dashed #aaa',
-        padding: 4,
-        textAlign: 'center',
-        cursor: 'pointer',
-        marginBottom: 2
-      }}>
-        <input {...getInputProps()} />
-        <Typography>Drag & drop some files here, or click to select files</Typography>
+      <Box sx={{ padding: 10 }}>
+        <Box {...getRootProps()} sx={{
+          border: '2px dashed #aaa',
+          padding: 4,
+          textAlign: 'center',
+          cursor: 'pointer',
+          marginBottom: 2
+        }}>
+          <input {...getInputProps()} />
+          <Typography>Drag & drop some files here, or click to select files</Typography>
+        </Box>
+        <Box>
+          {files.map((file, index) => (
+            <Box key={index} sx={{ marginBottom: 2 }}>
+              <img src={file.preview} alt="Preview" width={100} />
+              <Typography>{file.name}</Typography>
+            </Box>
+          ))}
+        </Box>
+        <Button variant="contained" color="primary" onClick={uploadFiles}>
+          Upload
+        </Button>
       </Box>
-      <Box>
-        {files.map((file, index) => (
-          <Box key={index} sx={{ marginBottom: 2 }}>
-            <img src={file.preview} alt="Preview" width={100} />
-            <Typography>{file.name}</Typography>
-          </Box>
-        ))}
-      </Box>
-      <Button variant="contained" color="primary" onClick={uploadFiles}>
-        Upload
-      </Button>
-    </Box>
     </Container>
   );
 };

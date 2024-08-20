@@ -1,4 +1,6 @@
 const express = require('express');
+const multer = require('multer');
+const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 const mongoose = require('mongoose');
@@ -6,7 +8,7 @@ const cors = require('cors');
 // const googleAuth = require('./config/googleAuth');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
-const fileRoutes = require('./routes/fileRoutes');
+const imgRoutes = require('./routes/imgRoutes');
 
 const app = express();
 
@@ -31,11 +33,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// googleAuth(passport);
-
 // Routes
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
-app.use('/file', fileRoutes);
+app.use('/img', imgRoutes);
 
 module.exports = app;

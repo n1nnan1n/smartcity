@@ -1,42 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function DisplayImage() {
-    const [image, setImage] = useState(null);
-    const [filename, setFilename] = useState('');
+const DisplayImage = ({ imageId }) => {
+  const [imageSrc, setImageSrc] = useState('');
 
+  useEffect(() => {
     const fetchImage = async () => {
-        try {
-            const response = await axios.get(`http://localhost:5000/file/image/${filename}`, {
-                responseType: 'blob' // Important to specify the response type as 'blob'
-            });
+      try {
+        const response = await axios.get(`http://localhost:5000/img/id/${imageId}`, {
+          responseType: 'arraybuffer',
+        });
 
-            const imageBlob = response.data;
-            const imageUrl = URL.createObjectURL(imageBlob);
-            setImage(imageUrl);
-        } catch (err) {
-            console.error('Error fetching the image:', err);
-            setImage(null);
-        }
+        // Convert the response data to base64
+        const base64 = btoa(
+          new Uint8Array(response.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            ''
+          )
+        );
+
+        // Set the image source with the correct content type
+        setImageSrc(`data:${response.headers['content-type'].toLowerCase()};base64,${base64}`);
+      } catch (error) {
+        console.error('Error fetching the image', error);
+      }
     };
 
-    const handleInputChange = (e) => {
-        setFilename(e.target.value);
-    };
+    if (imageId) {
+      fetchImage();
+    }
+  }, [imageId]);
 
-    return (
-        <div style={{marginTop:'150px'}}>
-            <input
-                type="text"
-                placeholder="Enter filename"
-                value={filename}
-                onChange={handleInputChange}
-            />
-            <button onClick={fetchImage}>Fetch Image</button>
-
-            {image && <img src={image} alt="Fetched from MongoDB" />}
-        </div>
-    );
-}
+  return (
+    <div>
+      {imageSrc ? <img src={imageSrc} alt="Fetched from server" /> : <p>Loading...</p>}
+    </div>
+  );
+};
 
 export default DisplayImage;
